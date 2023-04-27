@@ -7,9 +7,10 @@ require("dotenv").config();
 
 const app = express();
 app.use(cors());
+//======cors is present here
 app.use(express.json());
 app.get("/", (req, res) => {
-  res.send("getting");
+  res.send("new getting");
 });
 app.use("/users", userRouter);
 
