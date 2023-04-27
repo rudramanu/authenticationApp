@@ -21,7 +21,7 @@ userRouter.post("/register", (req, res) => {
           password: encrypted_pass,
         });
         await user.save();
-        res.send("Registered");
+        res.send({ message: "Registered" });
       }
     });
   } catch (error) {
@@ -37,7 +37,7 @@ userRouter.post("/login", async (req, res) => {
     bcrypt.compare(password, hashed_pass, (err, result) => {
       if (result) {
         const token = jwt.sign({ userID: user._id }, "rudra");
-        res.send({ message: "Logged in successfully", token });
+        res.send({ message: "Logged in successfully", token, name: user.name });
       } else {
         res.send("Wrong credentials", err);
       }
